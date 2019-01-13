@@ -37,14 +37,15 @@ class Contacts extends Component {
     const { contacts } = this.state;
 
     return (
-      <div>
+      // use React.Fragment when we want to return multiple components and no extra wrapper div is used for anying styling.
+      <React.Fragment>
         {contacts.map(contact => (
           <Contact
             key={contact.id}
             contact={contact}
           />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
