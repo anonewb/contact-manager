@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 // in rfc, props are stored inside {props}
 const Header = (props) => {
   // pull out "branding" from "props"
+  // destructuring
   const { branding } = props;
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-0">

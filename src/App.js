@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Contact from "./components/Contact";
+import Contacts from "./components/Contacts";
 import Header from "./components/Header";
 
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -9,10 +9,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/* branding is passed as props for Contact compo */}
         <Header branding="Contact Manager" />
         <div className="container">
-          <Contact name="John Doe" email="jdoe@gmail.com" phone="8888888888" />
-          <Contact name="Dave Smith" email="dave@gmail.com" phone="7777777777" />
+          <Contacts />
         </div>
       </div>
     );
