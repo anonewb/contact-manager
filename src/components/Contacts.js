@@ -11,16 +11,7 @@ class Contacts extends Component {
   // this.state = {---}
   // constructor is uded when we have to initiate something.
 
-  deleteContact = (id) => {
-    // console.log(id)
-    const { contacts } = this.state;
-
-    // cant use only setState() as we are not modifying rather we are deleting item from it
-    const newContacts = contacts.filter(contact => contact.id !== id);
-    this.setState({
-      contacts: newContacts
-    })
-  }
+  
 
 
 
@@ -38,8 +29,6 @@ class Contacts extends Component {
                 <Contact
                   key={contact.id}
                   contact={contact}
-                  deleteClickHandler={this.deleteContact.bind(this, contact.id)}
-                  // point 'contact.id' to 'this' in deleteContact()
                 />
               ))}
             </React.Fragment>
