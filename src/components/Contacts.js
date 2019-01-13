@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
+import { Consumer } from '../context';
+
 
 class Contacts extends Component {
   // this constructor method runs when Contacts compo is mounted
@@ -8,29 +10,6 @@ class Contacts extends Component {
   // super();
   // this.state = {---}
   // constructor is uded when we have to initiate something.
-
-  state = {
-    contacts: [
-      {
-        id: 1,
-        name: "John Doe",
-        email: "jdoe@gmail.com",
-        phone: "5555555555"
-      },
-      {
-        id: 2,
-        name: "Dave Smith",
-        email: "dave@gmail.com",
-        phone: "7777777777"
-      },
-      {
-        id: 3,
-        name: "Jane Doe",
-        email: "jane@gmail.com",
-        phone: "9999999999"
-      }
-    ]
-  };
 
   deleteContact = (id) => {
     // console.log(id)
@@ -43,22 +22,30 @@ class Contacts extends Component {
     })
   }
 
+
+
   render() {
-    // destructuring state obj
-    const { contacts } = this.state;
 
     return (
-      // use React.Fragment when we want to return multiple components and no extra wrapper div is used for anying styling.
-      <React.Fragment>
-        {contacts.map(contact => (
-          <Contact
-            key={contact.id}
-            contact={contact}
-            deleteClickHandler={this.deleteContact.bind(this, contact.id)}
-            // point 'contact.id' to 'this' in deleteContact()
-          />
-        ))}
-      </React.Fragment>
+      <Consumer>
+        {value => {
+          // destructuring vulue obj
+          const { contacts } = value;
+          return (
+            // use React.Fragment when we want to return multiple components and no extra wrapper div is used for anying styling.
+            <React.Fragment>
+              {contacts.map(contact => (
+                <Contact
+                  key={contact.id}
+                  contact={contact}
+                  deleteClickHandler={this.deleteContact.bind(this, contact.id)}
+                  // point 'contact.id' to 'this' in deleteContact()
+                />
+              ))}
+            </React.Fragment>
+          )
+        }}
+      </Consumer>
     );
   }
 }
