@@ -1,9 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
+import React from "react";
+import PropTypes from "prop-types";
 
 // in rfc, props are stored inside {props}
-const Header = (props) => {
+const Header = props => {
   // pull out "branding" from "props"
   // destructuring
   const { branding } = props;
@@ -24,16 +23,14 @@ const Header = (props) => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 Header.defaultProps = {
-  branding: 'My App'
-}
+  branding: "My App"
+};
 Header.propTypes = {
   branding: PropTypes.string.isRequired
-}
-
-
+};
 
 export default Header;

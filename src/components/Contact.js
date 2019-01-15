@@ -2,27 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../context";
 
-// in rcc, props are stored inside {this.props}
 class Contact extends Component {
   state = {
     showContactInfo: false
   };
 
-  // for custom methods inside compo i.e not a lifecycle method like render()
-  // 2 ways to use this custom method,
-  // 1. bind it with this keyword / or inside constructor fn
-  // 2. use arrow functions
-  // onShowClick = (e) => {
-  // console.log(this.state);
-  // console.log(e);
-  // console.log(e.target);
-  // }
-
-  // onShowClick = (name, e) => {
-  //   console.log(name);
-  // }
-
+  // for custom methods inside compo use arrow functions
   // onShowClick = e => {
+  // console.log(e);
   // states are immutable. therefore any changes need to be done in state object, use this.setState() and not this.state()
   // this.setState({
   //   showContactInfo: !this.state.showContactInfo
@@ -30,8 +17,8 @@ class Contact extends Component {
   // }
 
   onDeleteClick = (id, dispatch) => {
-    // console.log('hi')
-    dispatch({type: 'DELETE_CONTACT', payload: id});
+    // console.log('delete contact btn clicked!')
+    dispatch({ type: "DELETE_CONTACT", payload: id });
   };
 
   render() {
@@ -42,7 +29,7 @@ class Contact extends Component {
     return (
       <Consumer>
         {value => {
-          const {dispatch} = value;
+          const { dispatch } = value;
           return (
             <div className="card card-body mb-3">
               <h4>

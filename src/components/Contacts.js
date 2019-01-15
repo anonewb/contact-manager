@@ -1,38 +1,24 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
-import { Consumer } from '../context';
+import { Consumer } from "../context";
 
-
+// in rcc, props are stored inside {this.props}
 class Contacts extends Component {
-  // this constructor method runs when Contacts compo is mounted
-  // constructor() {
-  // calls parent of this constructor
-  // super();
-  // this.state = {---}
-  // constructor is uded when we have to initiate something.
-
-  
-
-
-
   render() {
-
     return (
+      // value is available here bcoz of the Context API. Value object is stored inside consumer
       <Consumer>
         {value => {
-          // destructuring vulue obj
+          // destructuring value obj
           const { contacts } = value;
           return (
             // use React.Fragment when we want to return multiple components and no extra wrapper div is used for anying styling.
             <React.Fragment>
               {contacts.map(contact => (
-                <Contact
-                  key={contact.id}
-                  contact={contact}
-                />
+                <Contact key={contact.id} contact={contact} />
               ))}
             </React.Fragment>
-          )
+          );
         }}
       </Consumer>
     );

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Contacts from "./components/Contacts";
 import Header from "./components/Header";
+import Contacts from "./components/Contacts";
 
-import { Provider } from './context';
+import { Provider } from "./context";
 
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider>
         <div className="App">
-          {/* branding is passed as props for Contact compo */}
+          {/* branding is passed as props for Header compo */}
           <Header branding="Contact Manager" />
           <div className="container">
             <Contacts />
