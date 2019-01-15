@@ -1,3 +1,6 @@
+// ref example
+// used when input to the from is taken via redux or props and not from state
+
 import React, { Component } from "react";
 
 class AddContact extends Component {
