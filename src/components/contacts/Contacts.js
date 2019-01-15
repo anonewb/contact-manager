@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
-import { Consumer } from "../context";
+import { Consumer } from "../../context";
 
 // in rcc, props are stored inside {this.props}
 class Contacts extends Component {
