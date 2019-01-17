@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/layout/Header";
 import Contacts from "./components/contacts/Contacts";
-import AddContact from "./components/contacts/AddContact_ref";
+import AddContact from "./components/contacts/AddContact";
 
 import { Provider } from "./context";
 

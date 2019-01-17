@@ -25,7 +25,7 @@ class AddContact extends Component {
   };
 
   static defaultProps = {
-    name: "fred smith",
+    name: "fred smithh",
     email: "f@yahoo.in",
     phone: "8888888888"
   };
@@ -82,4 +82,4 @@ class AddContact extends Component {
   }
 }
 
-export default AddContact;
+// export default AddContact;
