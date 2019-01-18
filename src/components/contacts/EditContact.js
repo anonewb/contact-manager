@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-// import uuid from "uuid";
 import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";
 
-class AddContact extends Component {
+class EditContact extends Component {
   state = {
     name: "",
     email: "",
     phone: "",
     errors: {}
   };
+
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+    const res = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`
+    );
+
+    const contact = res.data;
+
+    this.setState({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone
+    });
+  }
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
@@ -33,19 +47,15 @@ class AddContact extends Component {
       return;
     }
 
-    const newContact = {
-      // id: uuid(),
+    const updContact = {
       name,
       email,
       phone
     };
 
-    const res = await axios.post(
-      "https://jsonplaceholder.typicode.com/users",
-      newContact
-    );
+    const { id } = this.props.match.params;
 
-    dispatch({ type: "ADD_CONTACT", payload: res.data });
+    const res = await axios.put();
 
     // clear state onces form is submitted
     this.setState({
@@ -55,7 +65,12 @@ class AddContact extends Component {
       errors: {}
     });
 
-    this.props.history.push("/");
+    this.props.history.push(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+      updContact
+    );
+
+    dispatch({ type: "UPDATE_CONTACT", payload: res.data });
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -69,7 +84,7 @@ class AddContact extends Component {
           const { dispatch } = value;
           return (
             <div className="card mb-3">
-              <div className="card-header">Add Contact</div>
+              <div className="card-header">Update Contact</div>
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <TextInputGroup
@@ -92,6 +107,7 @@ class AddContact extends Component {
                   <TextInputGroup
                     label="Phone"
                     name="phone"
+                    type="number"
                     placeholder="Enter Phone no"
                     value={phone}
                     onChange={this.onChange}
@@ -99,7 +115,7 @@ class AddContact extends Component {
                   />
                   <input
                     type="submit"
-                    value="Add Contact"
+                    value="Update Contact"
                     className="btn btn-light btn-block"
                   />
                 </form>
@@ -112,4 +128,4 @@ class AddContact extends Component {
   }
 }
 
-export default AddContact;
+export default EditContact;
