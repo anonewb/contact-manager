@@ -2,13 +2,22 @@ import React, { Component } from "react";
 
 class Test extends Component {
   state = {
-    test: "test"
+    name: "",
+    email: "",
+    phone: ""
   };
 
   componentDidMount() {
     console.log("ComponentDidMount...");
-    // 2nd most used lifecycle method after render()
-    // here is where we make http requests to backend, ajax calls, fetching data from another compo.
+    fetch("https://jsonplaceholder.typicode.com/users/1")
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          name: data.name,
+          email: data.email,
+          phone: data.phone
+        })
+      );
   }
 
   // Discouraged to use this method
@@ -17,27 +26,31 @@ class Test extends Component {
   // }
 
   // instead use this method or prefix "UNSAFE_"
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log("getDerivedStateFromProps...");
-    return {
-      test:
-        "this is how state is changed and we dont use this.setState() in this lifecycle method"
-    };
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   console.log("getDerivedStateFromProps...");
+  //   return {
+  //     test:
+  //       "this is how state is changed and we dont use this.setState() in this lifecycle method"
+  //   };
+  // }
 
   // instead use this method or prefix "UNSAFE_"
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log("getSnapshotBeforeUpdate...");
-  }
+  // getSnapshotBeforeUpdate(prevProps, prevState) {
+  //   console.log("getSnapshotBeforeUpdate...");
+  // }
 
-  componentDidUpdate() {
-    // runs when state is changed
-  }
+  // componentDidUpdate() {
+  //   // runs when state is changed
+  // }
 
   render() {
+    const { name, email, phone } = this.state;
     return (
       <div>
         <h1>Test component for Lifecycle methods</h1>
+        <p>{name}</p>
+        <p>{email}</p>
+        <p>{phone}</p>
       </div>
     );
   }
