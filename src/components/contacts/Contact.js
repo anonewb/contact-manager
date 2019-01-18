@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 class Contact extends Component {
   state = {
@@ -24,7 +24,6 @@ class Contact extends Component {
     // 1st making a fake delete request, then deleting from DOM using dispatch()
     try {
       await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
-
       dispatch({ type: "DELETE_CONTACT", payload: id });
     } catch (e) {
       dispatch({ type: "DELETE_CONTACT", payload: id });
@@ -36,6 +35,7 @@ class Contact extends Component {
     // destructuring
     const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state;
+
     return (
       <Consumer>
         {value => {

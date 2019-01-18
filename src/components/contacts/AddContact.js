@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-// import uuid from "uuid";
-import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";
+import axios from "axios";
+// import uuid from "uuid";
 
 class AddContact extends Component {
   state = {
@@ -17,19 +17,19 @@ class AddContact extends Component {
 
     const { name, email, phone } = this.state;
 
-    // check for errors
+    // Check For Errors
     if (name === "") {
-      this.setState({ errors: { name: "Name is required!" } });
+      this.setState({ errors: { name: "Name is required" } });
       return;
     }
 
     if (email === "") {
-      this.setState({ errors: { email: "Email is required!" } });
+      this.setState({ errors: { email: "Email is required" } });
       return;
     }
 
     if (phone === "") {
-      this.setState({ errors: { phone: "Phone no. is required!" } });
+      this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
 
@@ -47,7 +47,7 @@ class AddContact extends Component {
 
     dispatch({ type: "ADD_CONTACT", payload: res.data });
 
-    // clear state onces form is submitted
+    // Clear State onces form is submitted
     this.setState({
       name: "",
       email: "",
@@ -92,7 +92,7 @@ class AddContact extends Component {
                   <TextInputGroup
                     label="Phone"
                     name="phone"
-                    placeholder="Enter Phone no"
+                    placeholder="Enter Phone"
                     value={phone}
                     onChange={this.onChange}
                     error={errors.phone}
